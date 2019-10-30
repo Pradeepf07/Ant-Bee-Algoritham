@@ -1,0 +1,187 @@
+<div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h3 style="font-size: 40px;text-align: center">WELCOME TO <br> ANT-BEE ALGORITHM</h3>
+                <div style="margin-left: 15%;margin-right: 15%">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam doloribus laborum reprehenderit
+                        perspiciatis voluptas id itaque nostrum porro excepturi eaque consequuntur vero quasi
+                        consequatur
+                        maxime, cumque ex! Nemo, fuga eius.</span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row" style="margin-top: 2%">
+                    <div class="col-md-4">
+                        <img src="../../assets/cloud.png" width="30%"><br>
+                        <a>
+                            <h4 style="text-transform: uppercase;font-weight: 800" (click)="cloud_click()">Cloudlets
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../../assets/ant.png" width="30%">
+                        <a>
+                            <h4 style="text-transform: uppercase;font-weight: 800" (click)="task_click()">Tasks</h4>
+                        </a>
+
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../../assets/23746-200.png" width="30%">
+                        <a>
+                            <h4 style="text-transform: uppercase;font-weight: 800">Algoritham</h4>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <!-- <label class="float-left" style="float: left">Number Of Cloudlets : {{cloudlets}}</label> -->
+                <div class="col-md-6 text-left" style="margin-top: 20px;">
+                    <label style="margin: 10px;float: left;">Cost Matrix</label>
+
+                    <div *ngFor="let items of createRange(cloudlets) let i = index">
+                        <span *ngFor="let item of costmatrix; let j = index"
+                            style="margin: 15px ; font-size: 20px;font-weight: 600">{{costmatrix[i][j].data}}</span>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-md-6 text-left" style="margin-top: 20px;">
+                    <label style="margin: 10px;float: left;">Phenomon Matrix</label>
+
+                    <div *ngFor="let items of createRange(cloudlets) let i = index">
+                        <span *ngFor="let item of phenoMatrix; let j = index"
+                            style="margin: 15px ; font-size: 20px;font-weight: 600">{{phenoMatrix[i][j].data}}</span>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Welcome secction data collection  -->
+                <div [hidden]="first_section" class="col-md-12">
+                    <div style="margin-top: 30px"></div>
+                    <div class="col-md-6">
+                        <label style="margin: 10px;float: left;">Cost Matrix (Distance between Cloudlets)</label>
+
+                        <!-- <label class="float-left" style="float: left">Number Of Cloudlets : {{cloudlets}}</label> -->
+                        <div class="col-md-12 text-left" style="margin-top: 20px;">
+
+                            <div *ngFor="let items of createRange(cloudlets) let i = index">
+                                <span *ngFor="let item of costmatrix; let j = index"
+                                    style="margin: 15px ; font-size: 20px;font-weight: 600">{{costmatrix[i][j].data}}</span>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <div>
+                            <div class="row">
+                                <div class=" form-group text-left col-md-6">
+                                    <label>Cloudlets</label>
+                                    <input type="number" class="form-control" #cloudletvalue>
+                                </div>
+                                <div class="form-group col-md-6" style="margin-top: 4%">
+                                    <button class="btn btn-block btn-primary"
+                                        (click)="changeqvalue(cloudletvalue)">Create</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label>Cloudlet</label>
+                                    <select class="form-control" #row_>
+                                        <option *ngFor="let item of createRange(cloudlets); let i=index" value="{{i}}">
+                                            Cloudlet {{item}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label>Cloudlet</label>
+                                    <select class="form-control" #column_>
+                                        <option *ngFor="let item of createRange(cloudlets); let i=index" value="{{i}}">
+                                            Cloudlet {{item}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class=" form-group text-left col-md-3">
+                                    <label>Distance </label>
+                                    <input type="number" class="form-control" #distance>
+                                </div>
+                                <div class="form-group col-md-3 float-right" style="margin-top: 3.7%">
+                                    <button class="btn btn-block btn-primary"
+                                        (click)="adddistance(row_,column_,distance)">Add
+                                        Distance</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Algoritham execution -->
+                <div [hidden]="second_section" style="margin-top:10px;margin-bottom: 50px">
+                    <div class="col-md-7">
+                        <span style="float: left">Click this area to create cloudlets</span>
+                        <canvas #canvas width="650px" height="400px" style="border: 1px solid"
+                            (click)="mouse_canvas_click($event)"></canvas>
+                    </div>
+                    <div class="col-md-5 text-left">
+                        <div>
+                            <div class="row">
+                                <div class=" form-group text-left col-md-6">
+                                    <label>Tasks Name</label>
+                                    <input type="text" class="form-control" #taskname>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label>Path</label>
+                                    <select class="form-control" #cloudlet>
+                                        <option *ngFor="let item of createRange(cloudlets); let i=index" value="{{i}}">
+                                            Cloudlet {{item}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3 float-right" style="margin-top: 3.7%">
+                                    <button class="btn btn-block btn-primary"
+                                        (click)="addtoroute(taskname,cloudlet)">Add to route</button>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <p *ngFor="let item of task let i=index">
+                                        <img src="../../assets/ant.png" width="5%">
+                                        {{item.taskname}}
+                                        <br>
+                                        <span *ngFor="let items of item.route let j=index" style="margin-left:10px">
+                                            Cloudlet {{items.route}}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="form-group col-md-6 float-right" style="margin-top: 3.7%">
+                                    <button class="btn btn-block btn-primary" (click)="findingphenomon()">Find Phenomone Matrix</button>
+                                </div>
+                                <div class="form-group col-md-6 float-right" style="margin-top: 3.7%">
+                                    <button class="btn btn-block btn-primary" (click)="evapuration()">After Evapuration</button>
+                                </div>
+                                <p class="col-md-12">{{log}}</p>
+                                <div class="form-group col-md-12 float-right">
+
+                                </div>
+                                <div class="form-group col-md-12 float-right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div [hidden]="third_section">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
