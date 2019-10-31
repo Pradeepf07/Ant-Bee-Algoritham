@@ -30,7 +30,7 @@
                     <div class="col-md-4">
                         <img src="../../assets/23746-200.png" width="30%">
                         <a>
-                            <h4 style="text-transform: uppercase;font-weight: 800">Algoritham</h4>
+                            <h4 style="text-transform: uppercase;font-weight: 800" (click)="formulas()">Formulas</h4>
                         </a>
 
                     </div>
@@ -161,16 +161,45 @@
                                     </p>
                                 </div>
                                 <div class="form-group col-md-6 float-right" style="margin-top: 3.7%">
-                                    <button class="btn btn-block btn-primary" (click)="findingphenomon()">Find Phenomone Matrix</button>
+                                    <button class="btn btn-block btn-primary" (click)="findingphenomon()">Find Phenomone
+                                        Matrix</button>
                                 </div>
                                 <div class="form-group col-md-6 float-right" style="margin-top: 3.7%">
-                                    <button class="btn btn-block btn-primary" (click)="evapuration()">After Evapuration</button>
+                                    <button class="btn btn-block btn-primary" (click)="evapuration()">After
+                                        Evapuration</button>
                                 </div>
                                 <p class="col-md-12">{{log}}</p>
                                 <div class="form-group col-md-12 float-right">
 
                                 </div>
-                                <div class="form-group col-md-12 float-right">
+                                <div>
+                                    <div class=" form-group text-left col-md-3">
+                                        <label>Tasks Name</label>
+                                        <input type="text" class="form-control" #newtaskname>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label>Starting</label>
+                                        <select class="form-control" #cloudlet_2>
+                                            <option *ngFor="let item of createRange(cloudlets); let i=index"
+                                                value="{{i}}">
+                                                Cloudlet {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                            <label>To</label>
+                                            <select class="form-control" #cloudletto>
+                                                <option *ngFor="let item of createRange(cloudlets); let i=index"
+                                                    value="{{i}}">
+                                                    Cloudlet {{item}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    <div class="form-group col-md-6 float-right" style="margin-top: 3.7%">
+                                        <button class="btn btn-block btn-primary"
+                                            (click)="Probabilitypathfind(newtaskname,cloudlet_2,cloudletto)">Find Probability path</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -178,8 +207,15 @@
                 </div>
 
 
-                <div [hidden]="third_section">
-
+                <div [hidden]="third_section" style="margin-bottom: 100px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="../../assets//Screenshot (1).png" width="800px">
+                        </div>
+                        <div class="col-md-12" style="margin-top: 50px">
+                                <img src="../../assets//Screenshot (2).png" width="650px">
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>

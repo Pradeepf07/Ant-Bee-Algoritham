@@ -217,7 +217,6 @@ export class WelcomescreenComponent implements OnInit {
     });
     console.log(this.phenoMatrix);
     console.log(this.task)
-    this.log = "Phenomone find out by the formula "
   }
 
   evapuration(){
@@ -228,6 +227,37 @@ export class WelcomescreenComponent implements OnInit {
         this.phenoMatrix[cl1-1][cl2-1].data = ((1-0.5)*1)+(this.phenoMatrix[cl1-1][cl2-1].data)
       }
     });
+  }
+
+  Probabilitypathfind(newtaskname,cloudlet_2,cloudletto)
+  {
+      let tem_p=0
+      let cl = cloudlet_2.value;
+
+      for(var i = cl; i < this.cloudlets;i++)
+      {
+         if(i != cl){
+            tem_p +=  (this.phenoMatrix[cl][i].data)*(1/(this.costmatrix[cl][i].data))
+         }
+      }
+
+      this.log += newtaskname.value+" starts with cloudlet "+ (cl+1);
+
+      for(var i = cl; i < this.cloudlets;i++)
+      {
+         if(i != cl){
+            this.log += "______probability to move cloudlet "+(i+1)+"   is = ";
+            let p =  (this.phenoMatrix[cl][i].data)*(1/(this.costmatrix[cl][i].data))/tem_p;
+            this.log += (p*100)+"%______";
+         }
+      }
+
+  }
+
+  formulas(){
+    this.first_section = true;
+    this.second_section = true;
+    this.third_section = false;
   }
 
 }
