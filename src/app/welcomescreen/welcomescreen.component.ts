@@ -146,7 +146,7 @@ export class WelcomescreenComponent implements OnInit {
     if (this.cloudletposition.length != this.cloudlets) {
       this.ctx.fillStyle = 'red ';
       console.log(event.clientX + event.clientY);
-      this.ctx.fillRect(event.clientX - 30, event.clientY - 350, 25, 25);
+      this.ctx.fillRect(event.clientX - 30, event.clientY - 350, 8, 8);
       this.ctx.fillStyle = 'green';
       this.ctx.fillText("Cloudlet " + (this.cloudletposition.length + 1), event.clientX - 30, event.clientY - 350)
 
